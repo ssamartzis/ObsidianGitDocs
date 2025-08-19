@@ -1,12 +1,17 @@
 title: Obsidian Git Docs
 description: Οδηγός για σύνδεση Obsidian με Git
 baseurl: "/ObsidianGitDocs"
-theme: jekyll-theme-cayman
 plugins:
   - jekyll-relative-links
 relative_links:
   enabled: true
   collections: true
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: default
 exclude:
   - README.md
   - LICENSE

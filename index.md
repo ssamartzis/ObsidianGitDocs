@@ -9,3 +9,4 @@ title: Αρχική
 
 - [Ρυθμίσεις Git](Obsidian_Git_Settings.md)
 - [Troubleshooting](troubleshooting.md)
+- [Δημιουργία GitHub Repo από Command](create_github_repo_from_command)
