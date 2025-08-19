@@ -1,50 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="el">
   <head>
     <meta charset="UTF-8">
     <title>{{ page.title }} | {{ site.title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-      body { margin: 0; font-family: sans-serif; display: flex; }
+      :root {
+        --bg: #ffffff;
+        --text: #000000;
+        --nav-bg: #f0f0f0;
+        --nav-text: #333333;
+        --nav-active: #007ACC;
+        --nav-active-text: #ffffff;
+      }
+
+      body.dark {
+        --bg: #121212;
+        --text: #e0e0e0;
+        --nav-bg: #1e1e1e;
+        --nav-text: #aaa;
+        --nav-active: #ffffff;
+        --nav-active-text: #007ACC;
+      }
+
+      body {
+        margin: 0;
+        font-family: sans-serif;
+        display: flex;
+        background-color: var(--bg);
+        color: var(--text);
+      }
+
       nav {
-        width: 220px;
-        background: #f0f0f0;
+        width: 240px;
+        background: var(--nav-bg);
         padding: 1em;
         height: 100vh;
         box-sizing: border-box;
       }
+
       nav h2 {
         margin-top: 0;
         font-size: 1.2em;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
+
       nav ul {
         list-style: none;
         padding: 0;
       }
+
       nav li {
         margin: 0.5em 0;
       }
+
       nav a {
         text-decoration: none;
-        color: #333;
+        color: var(--nav-text);
       }
+
       nav a.active {
         font-weight: bold;
-        color: #007ACC;
+        background: var(--nav-active);
+        color: var(--nav-active-text);
+        padding: 2px 6px;
+        border-radius: 4px;
       }
+
       main {
         flex: 1;
         padding: 2em;
+      }
+
+      button#theme-toggle {
+        background: none;
+        border: none;
+        font-size: 1.2em;
+        cursor: pointer;
+        color: var(--nav-text);
       }
     </style>
   </head>
   <body>
     <nav>
-      <h2>{{ site.title }}</h2>
+      <h2>
+        {{ site.title }}
+        <button id="theme-toggle" title="Toggle Theme">🌞</button>
+      </h2>
       <ul>
         {% for item in site.data.navigation %}
         <li>
-          <a href="{{ item.url | relative_url }}"
-             class="{% if page.url == item.url or page.url == item.url | append: '/' %}active{% endif %}">
+          <a href="{{ site.baseurl }}{{ item.url }}" class="{% if page.url contains item.url %}active{% endif %}">
             {{ item.title }}
           </a>
         </li>
@@ -54,5 +102,30 @@
     <main>
       {{ content }}
     </main>
+    <script>
+      const toggle = document.getElementById("theme-toggle");
+      const body = document.body;
+
+      function setTheme(theme) {
+        if (theme === "dark") {
+          body.classList.add("dark");
+          toggle.textContent = "🌙";
+        } else {
+          body.classList.remove("dark");
+          toggle.textContent = "🌞";
+        }
+        localStorage.setItem("theme", theme);
+      }
+
+      // Apply saved theme
+      const saved = localStorage.getItem("theme") || "light";
+      setTheme(saved);
+
+      // Toggle on click
+      toggle.addEventListener("click", () => {
+        const newTheme = body.classList.contains("dark") ? "light" : "dark";
+        setTheme(newTheme);
+      });
+    </script>
   </body>
 </html>
