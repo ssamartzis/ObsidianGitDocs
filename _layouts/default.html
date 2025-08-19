@@ -92,8 +92,8 @@
       <ul>
         {% for item in site.data.navigation %}
         <li>
-		<a href="{{ item.url | relative_url }}" class="{% if page.url == item.url %}active{% endif %}">
-        {{ item.title }}
+		<a href="{{ item.url | relative_url }}" class="{% if page.url contains item.url %}active{% endif %}">
+		{{ item.title }}
 		</a>
 		</li>
         {% endfor %}
