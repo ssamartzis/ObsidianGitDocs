@@ -8,7 +8,7 @@ title: Ρυθμίσεις Git
 _Ημερομηνία: 2025-08-20 00:00:20_
 
 ## 🧭 Που το βρίσκεις
-[Obsidian Git](https://publish.obsidian.md/git-doc/Start+here)
+[Obsidian Git (Ctrl+Click)](https://publish.obsidian.md/git-doc/Start+here)
 
 ---
 
