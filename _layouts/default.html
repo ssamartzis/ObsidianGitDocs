@@ -89,15 +89,15 @@
         {{ site.title }}
         <button id="theme-toggle" title="Toggle Theme">🌞</button>
       </h2>
-      <ul>
-        {% for item in site.data.navigation %}
-        <li>
-		<a href="{{ item.url | relative_url }}" class="{% if page.url contains item.url %}active{% endif %}">
-		{{ item.title }}
-		</a>
-		</li>
-        {% endfor %}
-      </ul>
+	  <ul>
+		  {% for item in site.data.navigation %}
+		  <li>
+			<a href="{{ item.url | relative_url }}" class="{% if item.url == '/' and page.url == '/' %}active{% elsif item.url != '/' and page.url contains item.url %}active{% endif %}">
+			  {{ item.title }}
+			</a>
+		  </li>
+		  {% endfor %}
+	</ul>
     </nav>
     <main>
       {{ content }}
