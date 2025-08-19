@@ -1,6 +1,11 @@
 - title: Αρχική
-  url: /ObsidianGitDocs
+  url: /
+
 - title: Ρυθμίσεις Git
-  url: /ObsidianGitDocs/Obsidian_Git_Settings
+  url: /Obsidian_Git_Settings
+
 - title: Troubleshooting
-  url: /ObsidianGitDocs/troubleshooting
+  url: /troubleshooting
+
+- title: Δημιουργία Repo από Command
+  url: /create_github_repo_from_command
