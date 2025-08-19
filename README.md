@@ -1,3 +1,8 @@
+---
+layout: default
+title: README
+---
+
 # Οδηγός Git Sync για το Obsidian
 
 Αυτό το repo περιέχει οδηγίες και αρχεία για να ρυθμίσετε το plugin **Obsidian Git** ώστε να συγχρονίζονται οι αλλαγές σας αυτόματα μέσω GitHub.
