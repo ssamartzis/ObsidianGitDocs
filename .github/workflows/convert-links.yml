@@ -1,1 +1,60 @@
+name: Convert Obsidian Links (for ObsidianGitDocs)
 
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'ObsidianGitDocs/**'
+
+jobs:
+  convert_links:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Convert Obsidian-style links ([[...]]) to Markdown links
+        run: |
+          python3 <<'EOF'
+          import re
+          from pathlib import Path
+
+          folder = Path("ObsidianGitDocs")
+
+          for md in folder.rglob("*.md"):
+              text = md.read_text(encoding="utf-8")
+              new_text = text
+
+              # Μετατροπή [[path|Title]] → [Title](path/)
+              new_text = re.sub(
+                  r"\[\[([^\]|]+)\|([^\]]+)\]\]",
+                  lambda m: f"[{m.group(2)}]({m.group(1).replace('.md','').replace('\\\\','/').replace('\\','/')}/)",
+                  new_text
+              )
+
+              # Μετατροπή [[path]] → [path](path/)
+              new_text = re.sub(
+                  r"\[\[([^\]]+)\]\]",
+                  lambda m: f"[{m.group(1)}]({m.group(1).replace('.md','').replace('\\\\','/').replace('\\','/')}/)",
+                  new_text
+              )
+
+              if new_text != text:
+                  md.write_text(new_text, encoding="utf-8")
+                  print(f"Converted links in: {md}")
+
+          EOF
+
+      - name: Commit converted files
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add ObsidianGitDocs/
+          git diff --quiet || (git commit -m "Auto-convert Obsidian [[links]] to Markdown links" && git push)
