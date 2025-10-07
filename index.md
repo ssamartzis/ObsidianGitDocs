@@ -12,4 +12,4 @@ title: Αρχική
 - [Δημιουργία GitHub Repo από Command](create_github_repo_from_command)
 
 ## Online Data
-- [[ObsidianGitDocs/OnlineData/index|index]]
+- [[ObsidianGitDocs/OnlineData/index|sssss]]
