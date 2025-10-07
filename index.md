@@ -11,5 +11,5 @@ title: Αρχική
 - [Troubleshooting](troubleshooting.md)
 - [Δημιουργία GitHub Repo από Command](create_github_repo_from_command)
 
-## Online Data 1
+## Online Data
 - [[ObsidianGitDocs/OnlineData/index|Τεκμηρίωση Online Data]]
